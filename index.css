@@ -1,4 +1,4 @@
-body{
+body {
     font-family: sans-serif;
     font-weight: bolder;
 }
@@ -7,12 +7,21 @@ h1 {
     text-align: center;
 }
 
-.a {
-    .b {
-        ewfrw
-    }
+body {
+    background-image: url('bg.png');
+}
 
-    .c {
-        rgrebgebter
-    }
+.img-center {
+    text-align: center;
+}
+
+#home .floor {
+    position: absolute;
+    margin-left: 100px;
+}
+
+#home .ac {
+    position: absolute;
+    margin-top: 12px;
+    margin-left: 330px;
 }
