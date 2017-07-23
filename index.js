@@ -4,11 +4,13 @@ $(document).ready(function () {
     var doorLink = "http://158.108.165.223/data/chat/ceedlerdoor/";
     var peopleLink = "http://158.108.165.223/data/chat/ceedlerpeople/";
     var tempLink = "http://158.108.165.223/data/chat/ceedlertemp/";
+    var brightLink = "http://158.108.165.223/data/chat/ceedlerbright/";
     var light = "close";
     var air = "close";
     var door = "close";
     var people = "0";
     var temp = "25";
+    var bright = "0";
 
     var vibrator;
     setInterval(function () {
@@ -20,7 +22,7 @@ $(document).ready(function () {
             console.log(data);
             var light1 = document.getElementById("light");
             var light2 = document.getElementById("light2");
-            if (light === "light open") {
+            if (light === "open") {
                 $('body').css("background-image", "url('bg-night.png')");
                 light1.setAttribute("src", "on-front-light.png");
                 light2.setAttribute("src", "on-front-light.png");
@@ -40,7 +42,7 @@ $(document).ready(function () {
         }).done(function (data) {
             air = data;
             console.log(data);
-            if (air === "air open") {
+            if (air === "open") {
                 clearInterval(vibrator);
                 vibrator = setInterval(function () {
                     var ac = document.getElementById('ac');
@@ -63,7 +65,7 @@ $(document).ready(function () {
             door = data;
             console.log(data);
             var d = document.getElementById("door");
-            if (door === "door open") {
+            if (door === "open") {
                 d.setAttribute("src", "open-door.png");
             } else {
                 d.setAttribute("src", "close-door.png");
@@ -73,14 +75,16 @@ $(document).ready(function () {
         })
 
         //people
-        $.ajax({
-            url: peopleLink
-        }).done(function (data) {
-            people = data;
-            console.log(data);
-        }).fail(function () {
-            console.error("fail to get people data");
-        })
+        // $.ajax({
+        //     url: peopleLink
+        // }).done(function (data) {
+        //     people = data;
+        //     console.log(data);
+        //     var peo = document.getElementById('people');
+        //     peo.innerHTML = people;
+        // }).fail(function () {
+        //     console.error("fail to get people data");
+        // })
 
         //temperature
         $.ajax({
@@ -88,8 +92,24 @@ $(document).ready(function () {
         }).done(function (data) {
             temp = data;
             console.log(data + " degree");
+            var tempNum = document.getElementById('tempNum');
+            tempNum.innerHTML = temp;
+            var tempProgess = document.getElementById('pg');
+            tempProgess.style.width = parseInt(temp) + "%";
         }).fail(function () {
             console.error("fail to get temperature data");
+        })
+
+        //brightness
+        $.ajax({
+            url: brightLink
+        }).done(function (data) {
+            bright = data;
+            console.log(data + " lux");
+            var bri = document.getElementById('bright');
+            bri.innerHTML = bright;
+        }).fail(function () {
+            console.error("fail to get brightness data");
         })
     }, 1000);
 
@@ -110,7 +130,7 @@ $(document).ready(function () {
         else
             light = "light open";
         $.ajax({
-            url: lightLink + "set/" + light
+            url: lightLink + "set/sent"
         }).done(function () {
             console.log(light + "Successful");
         }).fail(function () {
@@ -128,7 +148,7 @@ $(document).ready(function () {
             air = "air open";
         }
         $.ajax({
-            url: airLink + "set/" + air
+            url: airLink + "set/sent"
         }).done(function () {
             console.log(air + "Successful");
             //change pic
@@ -144,36 +164,12 @@ $(document).ready(function () {
         else
             door = "door open";
         $.ajax({
-            url: doorLink + "set/" + door
+            url: doorLink + "set/sent"
         }).done(function () {
             console.log(door + "Successful");
             //open the door, may be change the picture
         }).fail(function () {
             console.error(door + "Fail");
-        });
-    });
-
-    //people
-    $('#people').click(function () {
-        $.ajax({
-            url: peopleLink + "set/" + people
-        }).done(function () {
-            console.log(people + "people Successful");
-            //change number
-        }).fail(function () {
-            console.error(people + "people Fail");
-        });
-    });
-
-    //temp
-    $('#temp').click(function () {
-        $.ajax({
-            url: tempLink + "set/" + temp
-        }).done(function () {
-            console.log(temp + "degree Successful");
-            //update the progress bar
-        }).fail(function () {
-            console.error(temp + "degree Fail");
         });
     });
 });

@@ -1,10 +1,9 @@
-body {
-    font-family: sans-serif;
-    font-weight: bolder;
-}
-
 h1 {
     text-align: center;
+}
+
+#temp h3{
+    color: blue;
 }
 
 body {
@@ -61,9 +60,12 @@ body {
     transform: rotate(-90deg);
     width: 235px;
     height: 38px;
+    background: transparent !important;
+     box-shadow: none !important; 
+     /* -webkit-box-shadow: none;  */
     position: absolute;
     margin-top: -340px;
-    margin-left: -51px;
+    margin-left: -50px;
 }
 
 #tempNum {
@@ -74,7 +76,12 @@ body {
     color: white;
 }
 
-#text-detail {
+#text {
+    border: 2px solid yellow;
     padding-left: 50px;
+    padding-right: 50px;
     padding-top: 100px;
+    color: blue;
+    font-size: 40px;
+     background-color: lightgoldenrodyellow; 
 }
