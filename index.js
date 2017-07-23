@@ -96,6 +96,13 @@ $(document).ready(function () {
             tempNum.innerHTML = temp;
             var tempProgess = document.getElementById('pg');
             tempProgess.style.width = parseInt(temp) + "%";
+            if (parseInt(temp) >= 27) {
+                air = "air close"
+                airController();
+            } else if (parseInt(temp) < 20) {
+                airController();
+                air = "air open";
+            }
         }).fail(function () {
             console.error("fail to get temperature data");
         })
@@ -108,6 +115,14 @@ $(document).ready(function () {
             console.log(data + " lux");
             var bri = document.getElementById('bright');
             bri.innerHTML = bright;
+            if (parseInt(bright) >= 650 && light === "close") {
+                console.log("sd;afnads;lfnads;lfnadslkfjadslkfjdsklfjadskl;fjklasdjf");
+                light = "light close";
+                lightController();
+            } else if (parseInt(bright) < 650 && light === "open") {
+                light = "light open";
+                lightController();
+            }
         }).fail(function () {
             console.error("fail to get brightness data");
         })
@@ -125,6 +140,7 @@ $(document).ready(function () {
     });
 
     function lightController() {
+        console.log("aslinasildasdkmsajldasjdijasdioasjdioasjdoasijdasiodjisdjasodjsaiodjasiod");
         if (light === "light open")
             light = "light close";
         else
@@ -140,6 +156,10 @@ $(document).ready(function () {
 
     //air
     $('#ac').click(function () {
+        airController();
+    });
+
+    function airController() {
         if (air === "air open") {
             air = "air close";
             clearInterval(vibrator);
@@ -155,7 +175,7 @@ $(document).ready(function () {
         }).fail(function () {
             console.error(air + "Fail");
         });
-    });
+    }
 
     //door
     $('#door').click(function () {

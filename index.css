@@ -76,12 +76,16 @@ body {
     color: white;
 }
 
-#text {
-    border: 2px solid yellow;
-    padding-left: 50px;
+#text-box {
+    /* padding-left: 50px; */
     padding-right: 50px;
     padding-top: 100px;
     color: blue;
     font-size: 40px;
-     background-color: lightgoldenrodyellow; 
+}
+
+#text{
+    border: 2px solid yellow;
+     background-color: lightgoldenrodyellow;
+     padding: 20px; 
 }
