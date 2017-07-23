@@ -16,6 +16,14 @@ body {
     text-align: center;
 }
 
+#center-path {
+    display: inline-flex;
+}
+
+#home {
+    width: 800px;
+}
+
 #home .floor {
     position: absolute;
     margin-left: 150px;
@@ -43,4 +51,31 @@ body {
     position: absolute;
     margin-top: 365px;
     margin-left: 360px;
+}
+
+#temp {
+    position: relative;
+    text-align: center;
+}
+
+.progress {
+    transform: rotate(-90deg);
+    width: 235px;
+    height: 38px;
+    position: absolute;
+    margin-top: -340px;
+    margin-left: -51px;
+}
+
+#tempNum {
+    position: absolute;
+    margin-top: -175px;
+    margin-left: -25px;
+    font-size: 45px;
+    color: white;
+}
+
+#text-detail {
+    padding-left: 50px;
+    padding-top: 100px;
 }
