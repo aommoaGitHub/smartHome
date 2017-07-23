@@ -8,8 +8,9 @@ $(document).ready(function () {
     var air = "air close";
     var door = "door close";
     var people = "0";
-    var temp = "26";
+    var temp = "25";
 
+    var vibrator;
     setInterval(function () {
         //light
         $.ajax({
@@ -17,16 +18,34 @@ $(document).ready(function () {
         }).done(function (data) {
             light = data;
             console.log(data);
+            if (light === "light open") {
+                $('body').setAttribute('style', 'background-image: url("bg-night.png");');
+            }else {
+                $('body').setAttribute('style', 'background-image: url("bg.png");');
+            }
         }).fail(function () {
             console.error("fail to get light data");
         })
 
+        var count = 0;
         //air
         $.ajax({
             url: airLink
         }).done(function (data) {
             air = data;
             console.log(data);
+            if (air === "air open") {
+                clearInterval(vibrator);
+                vibrator = setInterval(function () {
+                    var ac = document.getElementById('ac');
+                    if (count % 2 === 0)
+                        ac.setAttribute('style', 'width: 145px;height: 55px;');
+                    else
+                        ac.setAttribute('style', 'width: 140px;height: 50px;');
+                    count++;
+                }, 100);
+            } else
+                clearInterval(vibrator);
         }).fail(function () {
             console.error("fail to get air data");
         })
@@ -62,6 +81,9 @@ $(document).ready(function () {
         })
     }, 1000);
 
+
+    //send part
+
     //light
     $('#light').click(function () {
         if (light === "light open")
@@ -72,18 +94,20 @@ $(document).ready(function () {
             url: lightLink + "set/" + light
         }).done(function () {
             console.log(light + "Successful");
-            //change pic and background
         }).fail(function () {
             console.error(light + "Fail");
         });
     });
 
     //air
-    $('#air').click(function () {
-        if (air === "air open")
+    $('#ac').click(function () {
+        if (air === "air open") {
             air = "air close";
-        else
+            clearInterval(vibrator);
+        }
+        else {
             air = "air open";
+        }
         $.ajax({
             url: airLink + "set/" + air
         }).done(function () {
