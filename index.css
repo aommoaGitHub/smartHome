@@ -9,6 +9,7 @@ h1 {
 
 body {
     background-image: url('bg.png');
+    /* background-image: url('bg-night.png'); */
 }
 
 .img-center {
@@ -17,11 +18,29 @@ body {
 
 #home .floor {
     position: absolute;
-    margin-left: 100px;
+    margin-left: 150px;
 }
 
 #home .ac {
     position: absolute;
     margin-top: 12px;
-    margin-left: 330px;
+    margin-left: 370px;
+}
+
+#home .front-light1 {
+    position: absolute;
+    margin-top: 430px;
+    margin-left: 285px;
+}
+
+#home .front-light2 {
+    position: absolute;
+    margin-top: 430px;
+    margin-left: 510px;
+}
+
+#home .door {
+    position: absolute;
+    margin-top: 365px;
+    margin-left: 360px;
 }
