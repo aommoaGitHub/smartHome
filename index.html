@@ -21,8 +21,8 @@
         <div class="img-center"><img src="topic.png" alt="topicName" height="17%"></div>
     </div>
     <br>
-    <div>
-        <div id="home">
+    <div id="center-path">
+        <div id="home" class="inline">
             <div class="floor">
                 <img src="floor.png" alt="floor" width="570px" height="490px">
             </div>
@@ -39,10 +39,20 @@
                 <img src="close-door.png" alt="door" width="150px" height="130px">
             </div>
         </div>
-        <div id="temp">
-
+        <div id="temp" class="inline">
+            <img src="thermometer.png" alt="thermometer" width="130px" height="380px">
+            <h3>Inside<br>Temperature</h3>
+            <div class="progress">
+                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                    <span class="sr-only">80% Complete (danger)</span>
+                </div>
+            </div>
+            <span id="tempNum">10</span>
         </div>
-        <div id="text-detail">
+        <div id="text-detail" class="inline">
+            <h2>People: 5</h2>
+            <h2>Brightness: 10 LUX</h2>
+            <h2>Temperature: 30 °C</h2>
 
         </div>
     </div>
