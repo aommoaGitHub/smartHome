@@ -4,9 +4,9 @@ $(document).ready(function () {
     var doorLink = "http://158.108.165.223/data/chat/ceedlerdoor/";
     var peopleLink = "http://158.108.165.223/data/chat/ceedlerpeople/";
     var tempLink = "http://158.108.165.223/data/chat/ceedlertemp/";
-    var light = "light close";
-    var air = "air close";
-    var door = "door close";
+    var light = "close";
+    var air = "close";
+    var door = "close";
     var people = "0";
     var temp = "25";
 
@@ -18,10 +18,16 @@ $(document).ready(function () {
         }).done(function (data) {
             light = data;
             console.log(data);
+            var light1 = document.getElementById("light");
+            var light2 = document.getElementById("light2");
             if (light === "light open") {
-                $('body').setAttribute('style', 'background-image: url("bg-night.png");');
-            }else {
-                $('body').setAttribute('style', 'background-image: url("bg.png");');
+                $('body').css("background-image", "url('bg-night.png')");
+                light1.setAttribute("src", "on-front-light.png");
+                light2.setAttribute("src", "on-front-light.png");
+            } else {
+                $('body').css("background-image", "url('bg.png')");
+                light1.setAttribute("src", "off-front-light.png");
+                light2.setAttribute("src", "off-front-light.png");
             }
         }).fail(function () {
             console.error("fail to get light data");
@@ -56,6 +62,12 @@ $(document).ready(function () {
         }).done(function (data) {
             door = data;
             console.log(data);
+            var d = document.getElementById("door");
+            if (door === "door open") {
+                d.setAttribute("src", "open-door.png");
+            } else {
+                d.setAttribute("src", "close-door.png");
+            }
         }).fail(function () {
             console.error("fail to get door data");
         })
@@ -86,6 +98,13 @@ $(document).ready(function () {
 
     //light
     $('#light').click(function () {
+        lightController();
+    });
+    $('#light2').click(function () {
+        lightController();
+    });
+
+    function lightController() {
         if (light === "light open")
             light = "light close";
         else
@@ -97,7 +116,7 @@ $(document).ready(function () {
         }).fail(function () {
             console.error(light + "Fail");
         });
-    });
+    }
 
     //air
     $('#ac').click(function () {
